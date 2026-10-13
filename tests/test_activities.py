@@ -23,6 +23,30 @@ def test_signup_success(client):
     assert response.json() == {"message": f"Signed up {email} for {activity}"}
 
 
+def test_signup_rejected_when_activity_is_full(client):
+    # Arrange
+    activity = "Soccer Club"
+    limit = 22
+    emails = [f"student-{index}@mergington.edu" for index in range(limit)]
+
+    # Act
+    signup_responses = [
+        client.post(f"/activities/{activity}/signup", params={"email": email})
+        for email in emails
+    ]
+    full_response = client.post(
+        f"/activities/{activity}/signup",
+        params={"email": "next-student@mergington.edu"},
+    )
+    activities_response = client.get("/activities")
+
+    # Assert
+    assert all(response.status_code == 200 for response in signup_responses)
+    assert full_response.status_code == 400
+    assert full_response.json() == {"detail": "Activity is full"}
+    assert len(activities_response.json()[activity]["participants"]) == limit
+
+
 def test_duplicate_signup_rejected(client):
     # Arrange
     activity = "Chess Club"
