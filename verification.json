@@ -23,9 +23,13 @@
   },
   "automated_tests": {
     "command": ".venv/bin/python -m pytest -q",
-    "passed": 9,
+    "passed": 10,
     "warnings": [
       "Installed Starlette deprecates httpx in TestClient; all contracts pass."
     ]
+  },
+  "copilot_review": {
+    "finding": "Missing activity capacity enforcement",
+    "resolution": "Added HTTP 400 Activity is full guard and public API regression test"
   }
 }
