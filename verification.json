@@ -1,0 +1,31 @@
+{
+  "application": "Student activity registration",
+  "environment": "local fake fixture data; Copilot CLI used after Codespaces editor returned 504",
+  "browser_flow": {
+    "signup": {
+      "message": "Signed up ui-smoke@example.edu for Soccer Club",
+      "participant_count": 1,
+      "spots_left": 21,
+      "refresh_required": false
+    },
+    "duplicate_signup": {
+      "message": "Student is already signed up",
+      "participant_count": 1,
+      "spots_left": 21
+    },
+    "unregister": {
+      "message": "Unregistered ui-smoke@example.edu from Soccer Club",
+      "card": "Soccer ClubBuild soccer skills through drills, teamwork, and friendly matchesSchedule: Tuesdays, 3:30 PM - 5:00 PMAvailability: 22 spots leftParticipants:",
+      "emailPresent": false,
+      "availabilityRestored": true,
+      "url": "http://127.0.0.1:8046/static/index.html"
+    }
+  },
+  "automated_tests": {
+    "command": ".venv/bin/python -m pytest -q",
+    "passed": 9,
+    "warnings": [
+      "Installed Starlette deprecates httpx in TestClient; all contracts pass."
+    ]
+  }
+}
